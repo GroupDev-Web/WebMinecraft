@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+<title>LowFrame Client: Browser Edition</title>
+<link rel="shortcut icon" type="image/png" href="assets/icon.png" />
+<link rel="stylesheet" href="css/theme.css" />
+</head>
+<body>
+
+<div class="bg">
+	<div class="bg-block b1"></div>
+	<div class="bg-block b2"></div>
+	<div class="bg-block b3"></div>
+	<div class="bg-block b4"></div>
+	<div class="bg-block b5"></div>
+	<div class="bg-glow"></div>
+</div>
+
+<div id="launcher">
+	<div class="shell-body">
+		<div id="sidebar">
+			<div class="logo-mark">
+				<img src="assets/icon.png" alt="LowFrame" />
+			</div>
+			<div class="nav-group">
+				<button class="nav-btn active" data-view="home" title="Home">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+					<span class="tooltip">Home</span>
+				</button>
+				<button class="nav-btn" data-view="servers" title="Servers">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="1.5"></rect><rect x="3" y="14" width="18" height="6" rx="1.5"></rect><line x1="7" y1="7" x2="7.01" y2="7"></line><line x1="7" y1="17" x2="7.01" y2="17"></line></svg>
+					<span class="tooltip">Servers</span>
+				</button>
+				<button class="nav-btn" data-view="connect" title="Direct Connect">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11.5 4.5"></path><path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07l1.36-1.36"></path></svg>
+					<span class="tooltip">Direct Connect</span>
+				</button>
+			</div>
+			<div class="version-tag" id="sidebar-version-tag">1.12.2 &middot; WASM-GC</div>
+		</div>
+
+		<div id="content">
+
+			<section class="view active" id="view-home">
+				<div class="hero">
+					<h1 class="wordmark">LOWFRAME</h1>
+					<p class="tagline">The lightweight PvP client, now in your browser.</p>
+					<button class="play-btn" id="quick-play">Play</button>
+				</div>
+				<div class="stat-row">
+					<div class="stat-card">
+						<div class="num" id="stat-servers">0</div>
+						<div class="label">Saved servers</div>
+					</div>
+					<div class="stat-card">
+						<div class="num" id="stat-version">1.12.2</div>
+						<div class="label">Protocol version</div>
+					</div>
+					<div class="stat-card">
+						<div class="num">WASM-GC</div>
+						<div class="label">Runtime</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="view" id="view-servers">
+				<div class="view-header">
+					<h1>Servers</h1>
+					<p>Pick a server to connect, or add a new one.</p>
+				</div>
+				<div id="server-list"></div>
+				<button class="add-server-btn" id="add-server-btn">+ Add Server</button>
+				<div class="form-panel" id="add-server-form" style="display:none; margin-top: 10px;">
+					<div class="field">
+						<label>Server Name</label>
+						<input type="text" id="new-server-name" placeholder="My Server" maxlength="48" />
+					</div>
+					<div class="field">
+						<label>Address</label>
+						<input type="text" id="new-server-addr" placeholder="wss://play.example.net" maxlength="128" />
+					</div>
+					<div class="form-actions">
+						<button class="btn primary" id="save-server-btn">Save</button>
+						<button class="btn" id="cancel-server-btn">Cancel</button>
+					</div>
+				</div>
+			</section>
+
+			<section class="view" id="view-connect">
+				<div class="view-header">
+					<h1>Direct Connect</h1>
+					<p>Join a server without saving it.</p>
+				</div>
+				<div class="form-panel">
+					<div class="field">
+						<label>Server Address</label>
+						<input type="text" id="direct-addr" placeholder="wss://play.example.net" />
+					</div>
+					<div class="form-actions">
+						<button class="btn primary" id="direct-connect-btn">Connect</button>
+					</div>
+				</div>
+			</section>
+
+		</div>
+	</div>
+
+	<footer class="dock">
+		<div class="dock-left">
+			<label class="dock-label" for="version-select">CLIENT</label>
+			<select id="version-select" class="dock-select">
+				<option value="1.12">Eaglercraft 1.12.2</option>
+				<option value="1.8">Eaglercraft 1.8.9</option>
+			</select>
+		</div>
+
+		<button id="dock-launch" class="launch" type="button">
+			<span class="launch-label">LAUNCH</span>
+			<span class="launch-sub" id="launch-sub">No server selected</span>
+		</button>
+
+		<div class="dock-right"></div>
+	</footer>
+</div>
+
+<button id="back-to-launcher">&larr; Launcher</button>
+<div id="game_frame"></div>
+<div id="toast"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
